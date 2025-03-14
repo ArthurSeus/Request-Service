@@ -1,13 +1,12 @@
-package com.Arthur.Request.Service.restapi;
+package com.Arthur.Request.Service.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Size;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Schema(description = "Hello world request", required = true)
-public final class RequestRequest {
+public final class ProcessRequest {
 
         @Size(max = 25)
         @Schema(description = "Hello World name", example = "Arthur", defaultValue = "World")

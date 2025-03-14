@@ -2,9 +2,9 @@ package com.Arthur.Request.Service.controller;
 
 import com.Arthur.Request.Service.persistence.entity.User;
 import com.Arthur.Request.Service.persistence.repository.UserRepository;
-import com.Arthur.Request.Service.restapi.RequestRequest;
-import com.Arthur.Request.Service.restapi.RequestResponse;
-import com.Arthur.Request.Service.service.RequestService;
+import com.Arthur.Request.Service.model.ProcessRequest;
+import com.Arthur.Request.Service.model.ProcessResponse;
+import com.Arthur.Request.Service.service.ProcessService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,15 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.SequencedCollection;
 
 @RestController
-public class RequestController {
+public class ProcessController {
 
-    private final RequestService requestService;
+    private final ProcessService processService;
 
     private final UserRepository userRepository;
 
     @Autowired
-    public RequestController(RequestService requestService, UserRepository userRepository) {
-        this.requestService = requestService;
+    public ProcessController(ProcessService processService, UserRepository userRepository) {
+        this.processService = processService;
         this.userRepository = userRepository;
     }
 
@@ -35,8 +35,8 @@ public class RequestController {
     }
 
     @PostMapping("/v1/users")
-    public ResponseEntity<RequestResponse> request(@Valid @RequestBody RequestRequest request) {
-        RequestResponse response = requestService.process(request);
+    public ResponseEntity<ProcessResponse> request(@Valid @RequestBody ProcessRequest request) {
+        ProcessResponse response = processService.process(request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
